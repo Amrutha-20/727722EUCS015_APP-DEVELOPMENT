@@ -2,18 +2,33 @@ import { useState } from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import Home from './components/Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+
 
 function App() {
-  const[isReg,setIsReg]=useState(true);
+ 
   return (
-    <div className="App">
-      <button onClick={()=>setIsReg(!isReg)}>
-        {isReg?'switch to login':'switch to register'}
-      </button>
-      {
-        isReg?<RegisterForm/>:<LoginForm/>
-      }
-    </div>
+    // <div className="App">
+    //   {/* <RegisterForm/>
+    //   <LoginForm/> */}
+    //   <Home/>
+    // </div>
+    <>
+      
+      <div>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/parties" element={<div>Parties</div>} />
+          <Route path="/services" element={<div>Services</div>} />
+          <Route path="/about" element={<div>About Us</div>} />
+          <Route path="/contact" element={<div>Contact Us</div>} />
+          <Route path="/login" element={<LoginForm/>} />
+          <Route path="/register" element={<RegisterForm/>} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
