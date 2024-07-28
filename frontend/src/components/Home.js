@@ -1,6 +1,8 @@
 import React from 'react';
 import './Home.css';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import Testimonials from './Testimonials';
 
 const projects = [
   {
@@ -23,11 +25,6 @@ const projects = [
     description: 'A lavish Bar Mitzvah at The Langham, London.',
     videoId: 'mQnJ1quDhKM'
   },
-  {
-    title: 'Victoria & Albert Museum Corporate Event',
-    description: 'A corporate summer event at the V&A.',
-    videoId: 'BVrrzqHQ1oc'
-  }
 ];
 
 const Home = () => {
@@ -46,14 +43,14 @@ const Home = () => {
       
       <section className="recent-projects-section">
         <h2>Recent Projects</h2>
-        <div>
+        <div className="projects-grid">
           {projects.map((project, index) => (
             <div className="project-card" key={index}>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
               <iframe
-                width="560"
-                height="315"
+                width="100%"
+                height="300"
                 src={`https://www.youtube.com/embed/${project.videoId}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -66,11 +63,12 @@ const Home = () => {
       <section className="venue-finder-section">
         <div className="venue-finder-background">
           <div className="venue-finder-content">
-           
             <button className="venue-finder-button">Search Venues</button>
           </div>
         </div>
       </section>
+      <Testimonials/>
+      <Footer/>
     </div>
   );
 };

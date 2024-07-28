@@ -28,22 +28,63 @@
   
 .heading {
     font-size: 3rem;
+   
 }
   
 .recent-projects-section {
-    padding: 2rem;
-    background: #fff;
-    text-align: center;
- }
-  
-.project-card {
-    background: white;
-    padding: 2rem;
-    margin: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+  padding: 1rem 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 30px;
 }
 
+.recent-projects-section  h2{
+  margin-left: 600px;
+  font-size:3rem;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.project-card h3{
+  margin-left: 10rem;
+}
+
+.project-card {
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.project-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@media (max-width: 1000px) {
+  .projects-grid {
+      grid-template-columns: 1fr;
+  }
+}
 
 .venue-finder-section {
   position: relative;

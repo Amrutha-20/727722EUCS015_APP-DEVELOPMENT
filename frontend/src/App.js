@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Theme from './components/Theme';
 
 
 
@@ -20,7 +21,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/parties" element={<div>Parties</div>} />
+          <Route path="/themes" element={<Theme/>} />
           <Route path="/services" element={<div>Services</div>} />
           <Route path="/about" element={<div>About Us</div>} />
           <Route path="/contact" element={<div>Contact Us</div>} />
