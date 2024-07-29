@@ -39,7 +39,7 @@ const Navbar = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {isAuthenticated ? username : '🙍‍♀️ Login'}
+          {isAuthenticated ? username : '🙍🏻‍♂️ Login'}
           {isHovered && (
             <div className="dropdown-menu">
               {!isAuthenticated ? (

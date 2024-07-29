@@ -35,7 +35,7 @@ const LoginForm = () => {
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-          <button type="submit">Login</button>
+          <button className='new_button' type="submit">Login</button>
         </form>
         <p>
           Don't have an account? <a href="/register">Register</a>

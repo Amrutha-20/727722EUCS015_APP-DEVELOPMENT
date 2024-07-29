@@ -8,6 +8,8 @@ import Theme from './components/Theme';
 import Service from './components/Service';
 import AboutUs from './components/About';
 import Contact from './components/Contact';
+import AdminLoginForm from './components/Adminlogin';
+import Dashboard from './Dashboard compo/DashBoard';
 ;
 
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/contact" element={<Contact />}/>
           <Route path="/login" element={<LoginForm/>} />
           <Route path="/register" element={<RegisterForm/>} />
+          <Route path="/admin-login" element={<AdminLoginForm/>} />
+          <Route path="/dashboard" element={<Dashboard/>} />
         </Routes>
       </div>
       
