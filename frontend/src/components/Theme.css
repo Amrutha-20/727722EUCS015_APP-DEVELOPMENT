@@ -21,14 +21,20 @@
     float: left;
     padding: 20px;
   }
-  
+  .theme-list{
+    text-align: center;
+  }
+  .theme-list h{
+    background-color: #212931;
+  }
   .theme-list ul {
     list-style-type: none;
     padding: 0;
   }
   
   .theme-list li {
-    background-color: #f0f0f0;
+    background-color: #212931;
+    color: #ddd;
     margin: 5px 0;
     padding: 10px;
     cursor: pointer;
@@ -36,7 +42,7 @@
   }
   
   .theme-list li:hover {
-    background-color: #ddd;
+    background-color: #4d4a4a;
   }
   
   .theme-detail {

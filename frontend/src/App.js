@@ -5,6 +5,10 @@ import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Theme from './components/Theme';
+import Service from './components/Service';
+import AboutUs from './components/About';
+import Contact from './components/Contact';
+;
 
 
 
@@ -22,13 +26,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/themes" element={<Theme/>} />
-          <Route path="/services" element={<div>Services</div>} />
-          <Route path="/about" element={<div>About Us</div>} />
-          <Route path="/contact" element={<div>Contact Us</div>} />
+          <Route path="/services" element={<Service/>} />
+          <Route path="/about" element={<AboutUs/>} />
+          <Route path="/contact" element={<Contact />}/>
           <Route path="/login" element={<LoginForm/>} />
           <Route path="/register" element={<RegisterForm/>} />
         </Routes>
       </div>
+      
     </>
   );
 }
