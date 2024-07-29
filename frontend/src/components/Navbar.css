@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
   padding: 1rem;
   position: fixed;
-  width: 98%;
+  width: 100%;
   top: 0;
   display: flex;
   justify-content: right;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Dashboardcontent from './Dashboardcontent';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
@@ -9,10 +10,13 @@ import Service from './components/Service';
 import AboutUs from './components/About';
 import Contact from './components/Contact';
 import AdminLoginForm from './components/Adminlogin';
-import Dashboard from './Dashboard compo/DashBoard';
-;
-
-
+import Ordercontent from './Ordercontent';
+import styled, { createGlobalStyle } from 'styled-components'
+import OrderList from './pages/OrderDetails';
+import Sidebar from './components/Sidebar';
+import { OrderProvider } from './pages/OrderContext';
+import Venuecontent from './Venuecontent';
+import Revenuecontent from './RevenueContent';
 
 function App() {
  
@@ -25,6 +29,7 @@ function App() {
     <>
       
       <div>
+      
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/themes" element={<Theme/>} />
@@ -34,8 +39,15 @@ function App() {
           <Route path="/login" element={<LoginForm/>} />
           <Route path="/register" element={<RegisterForm/>} />
           <Route path="/admin-login" element={<AdminLoginForm/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+
+        
+              <Route path="/orders" element={<Ordercontent/>}/>
+              <Route path="/dashboard" element={<Dashboardcontent/>}/>
+              <Route path="/venuelist" element={<Venuecontent/>}/>
+              <Route path="/revenue" element={<Revenuecontent/>}/>
+          
         </Routes>
+      
       </div>
       
     </>
