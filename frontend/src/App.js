@@ -17,6 +17,7 @@ import Sidebar from './components/Sidebar';
 import { OrderProvider } from './pages/OrderContext';
 import Venuecontent from './Venuecontent';
 import Revenuecontent from './RevenueContent';
+import Eventcontent from './Eventcontent';
 
 function App() {
  
@@ -45,6 +46,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboardcontent/>}/>
               <Route path="/venuelist" element={<Venuecontent/>}/>
               <Route path="/revenue" element={<Revenuecontent/>}/>
+              <Route path="/events" element={<Eventcontent/>}/>
           
         </Routes>
       

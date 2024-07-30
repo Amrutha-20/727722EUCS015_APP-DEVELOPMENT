@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './auth.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 
@@ -7,10 +8,18 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Handle registration logic here
-    console.log('Registering:', { username, email, password });
+    try {
+      const response = await axios.post('http://localhost:3031/users', {
+        name: username,
+        email: email,
+        password: password,
+      });
+      console.log('Registration successful:', response.data);
+    } catch (error) {
+      console.error('There was an error registering the user:', error);
+    }
   };
 
   return (
@@ -45,7 +54,7 @@ const RegisterForm = () => {
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-          <button className='new_button' type="submit">Register</button>
+          <button className="new_button" type="submit">Register</button>
         </form>
         <p>
           Already have an account? <a href="/login">Login</a>

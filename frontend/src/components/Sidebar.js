@@ -54,7 +54,7 @@ const Sidebar = () => {
       <SidebarLink to="/venuelist">Venues</SidebarLink>
       <SidebarLink to="/revenue">Revenue</SidebarLink>
       <SidebarLink to="/events">Events</SidebarLink>
-      <SidebarLink to="/overview">Overview</SidebarLink>
+      
       <DownloadButton>Download Report</DownloadButton>
     </SidebarContainer>
   );

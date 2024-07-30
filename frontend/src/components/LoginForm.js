@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import './auth.css';
+// src/LoginForm.js
+import React, { useState, useContext } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
+import axios from 'axios';
+import './auth.css';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Logging in:', { username, password });
+    try {
+      const response = await axios.get('http://localhost:3031/users');
+      const users = response.data;
+      const user = users.find((u) => u.email === username && u.password === password);
+      if (user) {
+        login(user.name);
+        navigate('/');
+      } else {
+        alert('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
   };
 
   return (
@@ -21,7 +38,7 @@ const LoginForm = () => {
             <FaUser className="icon" />
             <input 
               type="text" 
-              placeholder="Username" 
+              placeholder="Email" 
               value={username} 
               onChange={(e) => setUsername(e.target.value)} 
             />

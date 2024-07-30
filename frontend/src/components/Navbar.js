@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+// src/Navbar.js
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, username, logout } = useContext(AuthContext);
   const [isHovered, setIsHovered] = useState(false);
-  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   const handleUserLogin = () => {
@@ -14,16 +15,6 @@ const Navbar = () => {
 
   const handleAdminLogin = () => {
     navigate('/admin-login');
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUsername('');
-  };
-
-  const handleLogin = (user) => {
-    setIsAuthenticated(true);
-    setUsername(user);
   };
 
   return (
@@ -48,7 +39,7 @@ const Navbar = () => {
                   <div onClick={handleAdminLogin}>Admin Login</div>
                 </>
               ) : (
-                <div onClick={handleLogout}>Logout</div>
+                <div onClick={logout}>Logout</div>
               )}
             </div>
           )}
