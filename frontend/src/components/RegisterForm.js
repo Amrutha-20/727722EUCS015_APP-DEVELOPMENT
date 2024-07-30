@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './auth.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate=useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -17,6 +20,15 @@ const RegisterForm = () => {
         password: password,
       });
       console.log('Registration successful:', response.data);
+      toast.success('Registration successful!', {
+        position: "top-right",
+        autoClose: 1600,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        onClose: () => navigate('/login')
+      });
     } catch (error) {
       console.error('There was an error registering the user:', error);
     }
@@ -60,6 +72,7 @@ const RegisterForm = () => {
           Already have an account? <a href="/login">Login</a>
         </p>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

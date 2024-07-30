@@ -11,13 +11,10 @@ import AboutUs from './components/About';
 import Contact from './components/Contact';
 import AdminLoginForm from './components/Adminlogin';
 import Ordercontent from './Ordercontent';
-import styled, { createGlobalStyle } from 'styled-components'
-import OrderList from './pages/OrderDetails';
-import Sidebar from './components/Sidebar';
-import { OrderProvider } from './pages/OrderContext';
 import Venuecontent from './Venuecontent';
 import Revenuecontent from './RevenueContent';
 import Eventcontent from './Eventcontent';
+import VenuFinder from './venue conponents/VenuFinder';
 
 function App() {
  
@@ -38,6 +35,7 @@ function App() {
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/contact" element={<Contact />}/>
           <Route path="/login" element={<LoginForm/>} />
+          <Route path="/venues" element={<VenuFinder/>}/>
           <Route path="/register" element={<RegisterForm/>} />
           <Route path="/admin-login" element={<AdminLoginForm/>} />
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -28,6 +29,13 @@ const projects = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleSearchVenuesClick = () => {
+    console.log('Button clicked');
+    navigate('/venues');
+  };
+
   return (
     <div>
       <Navbar />
@@ -60,15 +68,18 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="venue-finder-section">
-        <div className="venue-finder-background">
-          <div className="venue-finder-content">
-            <button className="venue-finder-button">Search Venues</button>
+      <div className="venue-finder-section">
+        
+          <div className="venue-finder-button" >
+            <button  onClick={handleSearchVenuesClick} style={{
+                backgroundColor: '#ffffffd6',
+                color: '#000',
+                
+              }}>Search Venues</button>
           </div>
-        </div>
-      </section>
-      <Testimonials/>
-      <Footer/>
+      </div>
+      <Testimonials />
+      <Footer />
     </div>
   );
 };
