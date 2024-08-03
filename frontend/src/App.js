@@ -18,6 +18,7 @@ import Eventcontent from './Eventcontent';
 import VenuFinder from './venue conponents/VenuFinder';
 import Receipt from './payment/Receipt';
 import Payment from './payment/Payment';
+import VenueDetail from './venue conponents/VenueDetails';
 
 function App() {
  
@@ -39,9 +40,12 @@ function App() {
           <Route path="/contact" element={<Contact />}/>
           <Route path="/login" element={<LoginForm/>} />
           <Route path="/venues" element={<VenuFinder/>}/>
+          <Route path="services/venue-selection" element={<VenuFinder/>}/>
+
+          <Route path="/venues/:name" element={<VenueDetail/>} />
           <Route path="/register" element={<RegisterForm/>} />
           <Route path="/admin-login" element={<AdminLoginForm/>} />
-
+         
         
               <Route path="/orders" element={<Ordercontent/>}/>
               <Route path="/dashboard" element={<Dashboardcontent/>}/>

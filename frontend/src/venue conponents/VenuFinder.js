@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import './VenuFinder.css';
 import VenueFinderTop from './VenueFinderTop';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-
+import { Link } from 'react-router-dom';
 const venues = [
     // Your list of venues here...
     {
@@ -135,6 +135,7 @@ const venues = [
     },
   ];
   
+ 
   const VenuFinder = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTypes, setSelectedTypes] = useState([]);
@@ -149,7 +150,9 @@ const venues = [
           : [...selectedTypes, value]
       );
     };
-  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
     const handleEventChange = (event) => {
       const value = event.target.name;
       setSelectedEvents(
@@ -273,12 +276,14 @@ const venues = [
             <div className="vfvenues-grid">
               {filteredVenues.map((venue, index) => (
                 <div className="vfvenue-card" key={index}>
-                  <img
-                    className="vfvenue-image"
-                    src={venue.image}
-                    alt={venue.name}
-                  />
-                  <div className="vfvenue-name">{venue.name}</div>
+                  <Link to={`/venues/${venue.name}`}>
+                    <img
+                      className="vfvenue-image"
+                      src={venue.image}
+                      alt={venue.name}
+                    />
+                    <div className="vfvenue-name">{venue.name}</div>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -12,6 +12,7 @@ const Receipt = () => {
   const min = 100000;
   const max = 999999;
   const recid = Math.floor(Math.random() * (max - min + 1)) + min;
+
   return (
     <div className="rec-who">
       <div className="receipt-container">
@@ -32,12 +33,11 @@ const Receipt = () => {
             </div>
             <div className="receipt-item">
               <span>Custom Message:</span>
-              {/* <span>{receipt.customMessage}</span> */}
-              <span>Payment Successfull</span>
+              <span>Payment Successful</span>
             </div>
             <div className="receipt-item">
               <span>Total Amount:</span>
-              <span>${receipt.amount}</span>
+              <span>${receipt.totalPrice}</span>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import Footer from './Footer';
 import './Theme.css';
 import Navbar from './Navbar';
@@ -219,7 +219,9 @@ const themes = [
 
 const Theme = () => {
   const [selectedTheme, setSelectedTheme] = useState(themes[0]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
   return (
     <div>
       <Navbar />

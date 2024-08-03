@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Navbar from './Navbar';
@@ -35,7 +35,9 @@ const Home = () => {
     console.log('Button clicked');
     navigate('/venues');
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
   return (
     <div>
       <Navbar />

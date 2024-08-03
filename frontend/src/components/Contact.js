@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './Contact.css';
@@ -33,7 +33,9 @@ const Contact = () => {
     alert('Your message has been sent!');
     resetForm();
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
   return (
    <div>
     <Navbar/>

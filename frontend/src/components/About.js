@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './About.css';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Testimonials from './Testimonials'
 const AboutHeader = () => (
+  
   <section className="about-header">
     <div className='overlay'>
 
@@ -99,7 +100,11 @@ const AboutTestimonials = () => (
   </section>
 );
 
-const AboutUs = () => (
+const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
+return(
   <div>
     <Navbar/>
     <AboutHeader/>
@@ -109,5 +114,6 @@ const AboutUs = () => (
     <Footer/>
   </div>
 );
+};
 
 export default AboutUs;
