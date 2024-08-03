@@ -74,6 +74,8 @@ const Home = () => {
             <button  onClick={handleSearchVenuesClick} style={{
                 backgroundColor: '#ffffffd6',
                 color: '#000',
+                marginTop:"-8px",
+                height:"20px"
                 
               }}>Search Venues</button>
           </div>

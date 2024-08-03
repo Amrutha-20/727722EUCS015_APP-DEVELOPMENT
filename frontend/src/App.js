@@ -9,12 +9,15 @@ import Theme from './components/Theme';
 import Service from './components/Service';
 import AboutUs from './components/About';
 import Contact from './components/Contact';
+import Pay from './components/Pay';
 import AdminLoginForm from './components/Adminlogin';
 import Ordercontent from './Ordercontent';
 import Venuecontent from './Venuecontent';
 import Revenuecontent from './RevenueContent';
 import Eventcontent from './Eventcontent';
 import VenuFinder from './venue conponents/VenuFinder';
+import Receipt from './payment/Receipt';
+import Payment from './payment/Payment';
 
 function App() {
  
@@ -45,6 +48,8 @@ function App() {
               <Route path="/venuelist" element={<Venuecontent/>}/>
               <Route path="/revenue" element={<Revenuecontent/>}/>
               <Route path="/events" element={<Eventcontent/>}/>
+              <Route path="/receipt" element={<Receipt/>}/>
+              <Route path="/payment" element={<Payment/>}/>
           
         </Routes>
       
