@@ -1,15 +1,13 @@
-import { useState } from 'react';
 import './App.css';
 import Dashboardcontent from './Dashboardcontent';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Theme from './components/Theme';
 import Service from './components/Service';
 import AboutUs from './components/About';
 import Contact from './components/Contact';
-import Pay from './components/Pay';
 import AdminLoginForm from './components/Adminlogin';
 import Ordercontent from './Ordercontent';
 import Venuecontent from './Venuecontent';

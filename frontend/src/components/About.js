@@ -72,33 +72,33 @@ const AboutSpotlight = () => (
   </section>
 );
 
-const AboutTestimonials = () => (
-  <section className="about-testimonials">
-    <div className="testimonials-header">
-      <p>Testimonials</p>
-      <h1>What People are Saying</h1>
-    </div>
-    <div className="testimonials-content">
-      {[
-        { title: "“Extremely Accommodating”", content: "“I look forward to a long working relationship with Themers.”", author: "Ashley H." },
-        { title: "“Team was very professional.”", content: "“The props and decorations looked great and the team was very professional. Thanks!”", author: "Garrett A." },
-        { title: "“Love this event company!”", content: "“They have EVERYTHING you could possibly need for an event and are so helpful!! Will definitely be using them again in the future!!”", author: "Jennifer G." },
-        { title: "“Awesome”", content: "“Have used them for 4 events we have done!”", author: "Jineane F." }
-      ].map((testimonial, index) => (
-        <div key={index} className="testimonial">
-          <div className="testimonial-rating">
-            <img src="http://www.pandademo.site/wp-content/uploads/2018/11/stars.png" alt="Stars" />
-          </div>
-          <div className="testimonial-content">
-            <h2>{testimonial.title}</h2>
-            <p>{testimonial.content}</p>
-            <p><span className="testimonial-author">{testimonial.author}</span></p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+// const AboutTestimonials = () => (
+//   <section className="about-testimonials">
+//     <div className="testimonials-header">
+//       <p>Testimonials</p>
+//       <h1>What People are Saying</h1>
+//     </div>
+//     <div className="testimonials-content">
+//       {[
+//         { title: "“Extremely Accommodating”", content: "“I look forward to a long working relationship with Themers.”", author: "Ashley H." },
+//         { title: "“Team was very professional.”", content: "“The props and decorations looked great and the team was very professional. Thanks!”", author: "Garrett A." },
+//         { title: "“Love this event company!”", content: "“They have EVERYTHING you could possibly need for an event and are so helpful!! Will definitely be using them again in the future!!”", author: "Jennifer G." },
+//         { title: "“Awesome”", content: "“Have used them for 4 events we have done!”", author: "Jineane F." }
+//       ].map((testimonial, index) => (
+//         <div key={index} className="testimonial">
+//           <div className="testimonial-rating">
+//             <img src="http://www.pandademo.site/wp-content/uploads/2018/11/stars.png" alt="Stars" />
+//           </div>
+//           <div className="testimonial-content">
+//             <h2>{testimonial.title}</h2>
+//             <p>{testimonial.content}</p>
+//             <p><span className="testimonial-author">{testimonial.author}</span></p>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   </section>
+// );
 
 const AboutUs = () => {
   useEffect(() => {
