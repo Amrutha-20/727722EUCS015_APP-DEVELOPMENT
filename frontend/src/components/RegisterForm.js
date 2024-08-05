@@ -1,3 +1,4 @@
+// src/RegisterForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,12 +10,12 @@ const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3031/users', {
+      const response = await axios.post('http://localhost:8080/api/users/register', {
         name: username,
         email: email,
         password: password,

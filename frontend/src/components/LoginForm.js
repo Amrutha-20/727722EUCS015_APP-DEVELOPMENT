@@ -1,4 +1,3 @@
-// src/LoginForm.js
 import React, { useState, useContext } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -15,17 +14,16 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('http://localhost:3031/users');
-      const users = response.data;
-      const user = users.find((u) => u.email === username && u.password === password);
-      if (user) {
+      const response = await axios.get(`http://localhost:8080/api/users/email/${username}`);
+      const user = response.data;
+      if (user && user.password === password) {
         login(user.name);
         navigate('/');
       } else {
         alert('Invalid credentials');
       }
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error('Error fetching user:', error);
     }
   };
 
