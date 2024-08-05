@@ -31,7 +31,7 @@
     margin-right: 10px;
   }
   
-  form button {
+  .bookbutton {
     margin-top: 20px;
     padding: 10px;
     background-color: #e97d11;
@@ -44,7 +44,7 @@
     text-transform: uppercase;
   }
   
-  form button:hover {
+ .bookbutton:hover {
     background-color: #d16b0c;
   }
   

@@ -17,6 +17,11 @@ import VenuFinder from './venue conponents/VenuFinder';
 import Receipt from './payment/Receipt';
 import Payment from './payment/Payment';
 import VenueDetail from './venue conponents/VenueDetails';
+import Decorplanning from './service pages/Decorplanning';
+import PartyPlanning from './service pages/PartyPlanning';
+import EventManagement from './service pages/EventManagement';
+import Entertainment from './service pages/Entertainment';
+import Catering from './service pages/Catering';
 
 function App() {
  
@@ -39,6 +44,11 @@ function App() {
           <Route path="/login" element={<LoginForm/>} />
           <Route path="/venues" element={<VenuFinder/>}/>
           <Route path="services/venue-selection" element={<VenuFinder/>}/>
+          <Route path="/services/decor-design" element={<Decorplanning/>}/>
+          <Route path="/services/party-planning" element={<PartyPlanning/>}/>
+          <Route path="/services/event-management" element={<EventManagement/>}/>
+          <Route path="/services/entertainment" element={<Entertainment/>}/>
+          <Route path="/services/catering" element={<Catering/>}/>
 
           <Route path="/venues/:name" element={<VenueDetail/>} />
           <Route path="/register" element={<RegisterForm/>} />

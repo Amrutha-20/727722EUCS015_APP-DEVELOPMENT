@@ -64,9 +64,25 @@ const Contact = () => {
               <div className="form-group">
                 <Field as="select" id="venue" name="venue">
                   <option value="" label="Choose a venue" />
-                  <option value="venue1" label="Venue 1" />
-                  <option value="venue2" label="Venue 2" />
-                  <option value="venue3" label="Venue 3" />
+                  <option value="Victoria-And-Albert-Museum-London">Victoria-And-Albert-Museum-London</option>
+                   <option value="Somerset-House">Somerset-House</option>
+                   <option value="Cafe-de-Paris-London">Cafe-de-Paris-London</option>
+                    <option value="Shangri-La-Hotel-Sydney">Shangri-La-Hotel-Sydney</option>
+<option value="Cutty-Sark-London">Cutty-Sark-London</option>
+<option value="Turandot-Moscow">Turandot-Moscow</option>
+<option value="The-Langham-London">The-Langham-London</option>
+<option value="The-Grand-Hotel-Brighton">The-Grand-Hotel-Brighton</option>
+<option value="The-Dorchester-London">The-Dorchester-London</option>
+<option value="Natural-History-Museum-London">Natural-History-Museum-London</option>
+<option value="The-Ritz-Paris">The-Ritz-Paris</option>
+<option value="Blenheim-Palace-Oxfordshire">Blenheim-Palace-Oxfordshire</option>
+<option value="Grand-Central-Hotel-Glasgow">Grand-Central-Hotel-Glasgow</option>
+<option value="Villa-d'Este-Lake-Como">Villa-d'Este-Lake-Como</option>
+<option value="Royal-Albert-Hall-London">Royal-Albert-Hall-London</option>
+<option value="Burj-Al-Arab-Dubai">Burj-Al-Arab-Dubai</option>
+<option value="Montreux-Palace-Switzerland">Montreux-Palace-Switzerland</option>
+<option value="The-Palace-of-Versailles-France">The-Palace-of-Versailles-France</option>
+
                 </Field>
                 <ErrorMessage name="venue" component="div" className="error" />
               </div>

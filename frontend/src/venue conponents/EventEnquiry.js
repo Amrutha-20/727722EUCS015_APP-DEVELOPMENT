@@ -116,7 +116,7 @@ const EventEnquiry = ({ venueName }) => {
           {errors.theme && <div className="error">{errors.theme}</div>}
         </label>
 
-        <button type="submit">BOOK NOW</button>
+        <button className='bookbutton' type="submit">BOOK NOW</button>
       </form>
     </div>
   );

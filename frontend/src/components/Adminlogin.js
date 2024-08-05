@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './auth.css';
 import { FaUser, FaLock } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLoginForm = () => {
   const [adminUsername, setAdminUsername] = useState('');

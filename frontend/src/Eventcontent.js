@@ -5,7 +5,6 @@ import EventList from './Events components/EventList';
 import EventDetails from './Events components/EventDetails';
 import AddEditEvent from './Events components/AddEditEvent';
 import EventCalendar from './Events components/EventCalendar';
-import UserManagement from './Events components/UserManagement';
 
 const ApppContainer = styled.div`
   display: flex;
