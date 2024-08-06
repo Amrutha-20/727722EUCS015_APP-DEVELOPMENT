@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './auth.css';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Ensure to import the CSS for toast notifications
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 
 const RegisterForm = () => {
@@ -16,8 +17,8 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/register', {
-        name: username,
-        email: email,
+        userName:username,
+        email:email,
         password: password,
       });
       console.log('Registration successful:', response.data);
@@ -32,6 +33,14 @@ const RegisterForm = () => {
       });
     } catch (error) {
       console.error('There was an error registering the user:', error);
+      toast.error('Registration failed. Please try again.', {
+        position: "top-right",
+        autoClose: 1600,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
