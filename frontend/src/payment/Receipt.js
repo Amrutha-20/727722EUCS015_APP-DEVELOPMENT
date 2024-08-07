@@ -1,17 +1,58 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./receipt.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { UserContext } from "../components/UserProvider";
 
 const Receipt = () => {
   const now = new Date();
   const options = { month: "short", day: "2-digit", year: "numeric" };
   const currentDate = now.toLocaleDateString("en-US", options);
+
+  const serverDateFormat = now.toISOString().split("T")[0];
+
   const location = useLocation();
   const navigate = useNavigate();
   const receipt = location.state || {};
   const min = 100000;
   const max = 999999;
+
+  const { userId } = useContext(UserContext);
   const recid = Math.floor(Math.random() * (max - min + 1)) + min;
+  const [form, setForm] = useState({
+    receiptid: recid.toString(),
+    username: receipt.cardHolderName,
+    amount: receipt.totalPrice,
+    date: serverDateFormat,
+    venue: "New avenue",
+    user: {
+      id: userId,
+    },
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log("Submitting form:", form);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/payment/add",
+        form
+      );
+      console.log("Response:", response.data);
+    } catch (e) {
+      if (e.response) {
+        console.error("Error Response Data:", e.response.data);
+        console.error("Error Response Status:", e.response.status);
+        console.error("Error Response Headers:", e.response.headers);
+      } else {
+        console.error("Error Message:", e.message);
+      }
+    }
+
+    navigate("/");
+  };
 
   return (
     <div className="rec-who">
@@ -41,12 +82,7 @@ const Receipt = () => {
             </div>
           </div>
         </div>
-        <button
-          className="btns"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
+        <button className="btns" onClick={(e) => handleSubmit(e)}>
           Return to home page
         </button>
       </div>

@@ -1,7 +1,10 @@
 import React, { useState , useEffect } from 'react';
 import Footer from './Footer';
+import Themechat from './Themechat';
 import './Theme.css';
 import Navbar from './Navbar';
+import Lottie from 'react-lottie';
+import chatAnimation from './themebot.json';
 
 const themes = [
   {
@@ -219,9 +222,21 @@ const themes = [
 
 const Theme = () => {
   const [selectedTheme, setSelectedTheme] = useState(themes[0]);
+  const [showChat, setShowChat] = useState(false);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: chatAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
-}, []);
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -250,7 +265,11 @@ const Theme = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <div className="thchat-icon" onClick={() => setShowChat(true)}>
+        <Lottie options={defaultOptions} height={70} width={70} />
+      </div>
+      {showChat && <Themechat setShowChat={setShowChat} />}
+      <Footer />
     </div>
   );
 };

@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
+@CrossOrigin("http://localhost:3000") 
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:3000") 
 public class AuthController {
     private final AuthService authService;
     private final RefreshTokenService refreshTokenService;
@@ -52,6 +52,10 @@ public class AuthController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(userName);
+    }
+    @GetMapping("/nam/{name}")
+    public int getId(@PathVariable String name){
+        return authService.findIds(name);
     }
     
 

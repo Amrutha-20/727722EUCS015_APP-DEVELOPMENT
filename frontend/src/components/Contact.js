@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import './Contact.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import axios from 'axios';
 
 const Contact = () => {
   const initialValues = {
@@ -27,12 +28,18 @@ const Contact = () => {
     eventDate: Yup.string().required('Event date is required'),
     eventTime: Yup.string().required('Event time is required'),
   });
-
   const onSubmit = (values, { resetForm }) => {
-    console.log('Form data', values);
-    alert('Your message has been sent!');
-    resetForm();
+    axios.post('http://localhost:8080/contact/submit', values)
+      .then(response => {
+        console.log('Form data', response.data);
+        alert('Your message has been sent!');
+        resetForm();
+      })
+      .catch(error => {
+        console.error('There was an error submitting the form!', error);
+      });
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
 }, []);
@@ -90,18 +97,18 @@ const Contact = () => {
                 <Field as="select" id="theme" name="theme">
                   <option value="" label="Choose a theme" />
                   <option value="Alice-Wonderland" label="Alice-Wonderland" />
-                  <option value="theme2" label="Arabian-Egyptian" />
-                  <option value="theme2" label="Beach-Nautical" />
-                  <option value="theme2" label="Casino-Night" />
-                  <option value="theme3" label="Elegant" />
-                  <option value="theme3" label="Fiesta" />
-                  <option value="theme3" label="Fifties" />
-                  <option value="theme3" label="Halloween" />
-                  <option value="theme3" label="Christmas" />
-                  <option value="theme3" label="Hollywood" />
-                  <option value="theme3" label="International" />
-                  <option value="theme3" label="Racing" />
-                  <option value="theme3" label="Space" />
+                  <option value="Arabian-Egyptian" label="Arabian-Egyptian" />
+                  <option value="Beach-Nautical" label="Beach-Nautical" />
+                  <option value="Casino-Night" label="Casino-Night" />
+                  <option value="Elegant" label="Elegant" />
+                  <option value="Fiesta" label="Fiesta" />
+                  <option value="Fifties" label="Fifties" />
+                  <option value="Halloween" label="Halloween" />
+                  <option value="Christmas" label="Christmas" />
+                  <option value="Hollywood" label="Hollywood" />
+                  <option value="International" label="International" />
+                  <option value="Racing" label="Racing" />
+                  <option value="Space" label="Space" />
                   
                 </Field>
                 <ErrorMessage name="theme" component="div" className="error" />

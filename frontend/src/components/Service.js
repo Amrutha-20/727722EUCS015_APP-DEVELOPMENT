@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const Service = () => {
   const navigate = useNavigate();
 
-  const handlePayment = () => {
-    navigate("/payment");
+  const handlePayment = (venueName, totalPrice) => {
+    navigate("/payment", {
+      state: { venueName, totalPrice },
+    });
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,7 +58,7 @@ const Service = () => {
             <li>✅ 2 Hours of Entertainment</li>
           </ul>
           <p className="card-price">$500</p>
-          <button className="pay-btn" onClick={handlePayment}>
+          <button className="pay-btn" onClick={() => handlePayment('Basic Package', 500)}>
             Pay Now
           </button>
         </div>
@@ -88,7 +90,7 @@ const Service = () => {
             <li>✅ Photography</li>
           </ul>
           <p className="card-price">$800</p>
-          <button className="pay-btn" onClick={handlePayment}>
+          <button className="pay-btn" onClick={() => handlePayment('Standard Package', 800)}>
             Pay Now
           </button>
         </div>
@@ -123,7 +125,7 @@ const Service = () => {
           <p className="card-price" style={{ marginBottom: "20px" }}>
             $1200
           </p>
-          <button className="pay-btn" onClick={handlePayment}>
+          <button className="pay-btn" onClick={() => handlePayment('Premium Package', 1200)}>
             Pay Now
           </button>
         </div>

@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/**","/forgotPassword/**")
+                        .requestMatchers("/api/users/**","/payment/**","/**")
                         .permitAll()
                         .requestMatchers("/api/admin/**")  // Example for admin access
                         .hasRole("ADMIN")  // Admin role requirement

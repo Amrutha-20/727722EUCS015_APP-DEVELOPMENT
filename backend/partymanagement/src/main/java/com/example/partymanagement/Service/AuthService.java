@@ -69,4 +69,8 @@ public class AuthService {
         
         return userRepository.findByEmail(email);
     }
+
+    public int findIds(String name){
+        return userRepository.findId(name);
+    }
 }
