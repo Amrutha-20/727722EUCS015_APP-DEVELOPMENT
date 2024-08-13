@@ -1,139 +1,223 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card, Pagination, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { FaSearch } from 'react-icons/fa';
+import axios from 'axios';
 
-const VenueListWrapper = styled.div`
-  padding: 20px;
-  background-color: #edf2f7;
+const DashboardContainer = styled.div`
+  background: #f8f9fa;
+  padding: 60px 0;
   min-height: 100vh;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+`;
+
+const Title = styled.h2`
+  color: #333;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
 `;
 
 const VenueCard = styled(Card)`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-`;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-const VenueCardBody = styled(Card.Body)`
-  padding: 20px;
- background: rgb(2,0,36);
-background: linear-gradient(125deg, rgba(2,0,36,1) 0%, rgba(3,5,17,1) 10%, rgba(3,35,51,1) 80%, rgba(0,212,255,1) 100%);
-  color: white;
-  transition: transform 0.2s ease-in-out;
   &:hover {
-    transform: scale(1.02);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 `;
 
-const VenueTitle = styled(Card.Title)`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+const VenueImage = styled(Card.Img)`
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: filter 0.3s ease;
+
+  ${VenueCard}:hover & {
+    filter: brightness(1);
+  }
 `;
 
-const VenueText = styled(Card.Text)`
+const CardBodyOverlay = styled.div`
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 100%);
+  color: #333;
+`;
+
+const VenueTitle = styled.h3`
+  font-size: 1.8rem;
+  color: #007bff;
+  margin-bottom: 5px;
+  font-weight: 600;
+`;
+
+const VenueOverview = styled(Card.Text)`
+  color: #666;
   font-size: 1rem;
+  margin-bottom: 20px;
 `;
 
-const venues = [
-  {
-    name: 'Venue A',
-    location: 'New York',
-    capacity: 200,
-    status: 'Available',
-    details: 'This is a great venue located in New York.',
-  },
-  {
-    name: 'Venue B',
-    location: 'Los Angeles',
-    capacity: 150,
-    status: 'Booked',
-    details: 'This venue is currently booked.',
-  },
-  {
-    name: 'Venue C',
-    location: 'Chicago',
-    capacity: 300,
-    status: 'Available',
-    details: 'A spacious venue in Chicago perfect for large events.',
-  },
-  {
-    name: 'Venue D',
-    location: 'San Francisco',
-    capacity: 100,
-    status: 'Under Maintenance',
-    details: 'This venue is under maintenance and not available for booking.',
-  },
-  {
-    name: 'Venue E',
-    location: 'Miami',
-    capacity: 250,
-    status: 'Available',
-    details: 'A popular venue in Miami with great facilities.',
-  },
-  {
-    name: 'Venue F',
-    location: 'Dallas',
-    capacity: 180,
-    status: 'Booked',
-    details: 'This venue is currently booked.',
-  },
-  {
-    name: 'Venue G',
-    location: 'Seattle',
-    capacity: 220,
-    status: 'Available',
-    details: 'A modern venue in Seattle, perfect for tech events.',
-  },
-  {
-    name: 'Venue H',
-    location: 'Boston',
-    capacity: 140,
-    status: 'Available',
-    details: 'A charming venue in Boston, great for weddings and parties.',
-  },
-  {
-    name: 'Venue I',
-    location: 'Houston',
-    capacity: 190,
-    status: 'Booked',
-    details: 'This venue is currently booked.',
-  },
-  {
-    name: 'Venue J',
-    location: 'Philadelphia',
-    capacity: 210,
-    status: 'Available',
-    details: 'A versatile venue in Philadelphia suitable for various events.',
-  },
-];
+const CapacityDetails = styled.div`
+  font-size: 0.9rem;
+  color: #777;
+`;
+
+const SearchContainer = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const SearchInput = styled(FormControl)`
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  background-color: #ffffff;
+  color: #333;
+  max-width: 600px;
+  border: 1px solid #ccc;
+
+  &:focus {
+    background-color: #ffffff;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+  }
+`;
+
+const SearchButton = styled(Button)`
+  border-radius: 50px;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-left: -60px;
+  z-index: 1;
+
+  &:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+`;
+
+const PaginationContainer = styled(Pagination)`
+  .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+  }
+
+  .page-item .page-link {
+    color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .page-item .page-link:hover {
+    background-color: #f1f3f5;
+    color: #007bff;
+  }
+`;
 
 const VenueList = () => {
+  const [venues, setVenues] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(2);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/venuesdetails/get')
+      .then(response => {
+        setVenues(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the data!', error);
+      });
+  }, []);
+
+  const handleSearch = () => {
+    setCurrentPage(1); // Reset to the first page after a new search
+  };
+
+  const filteredVenues = venues.filter(venue =>
+    venue.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    venue.overview.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastVenue = currentPage * itemsPerPage;
+  const indexOfFirstVenue = indexOfLastVenue - itemsPerPage;
+  const currentVenues = filteredVenues.slice(indexOfFirstVenue, indexOfLastVenue);
+
+  const totalPages = Math.ceil(filteredVenues.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <VenueListWrapper>
+    <DashboardContainer>
       <Container>
-        <h2 className="mb-4">Venue List</h2>
+        <Title>Venue Explorer</Title>
+
+        <SearchContainer>
+          <InputGroup className="mb-3" style={{ width: '100%', maxWidth: '700px' }}>
+            <SearchInput
+              placeholder="Search Venues..."
+              aria-label="Search Venues"
+              aria-describedby="basic-addon2"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <SearchButton onClick={handleSearch}><FaSearch /></SearchButton>
+          </InputGroup>
+        </SearchContainer>
+
         <Row>
-          {venues.map((venue, index) => (
-            <Col md={6} key={index}>
+          {currentVenues.map((venue) => (
+            <Col md={6} key={venue.id} style={{ marginBottom: "30px" }}>
               <VenueCard>
-                <VenueCardBody>
+                <VenueImage variant="top" src={venue.images[0]} />
+                <CardBodyOverlay>
                   <VenueTitle>{venue.name}</VenueTitle>
-                  <VenueText><strong>Location:</strong> {venue.location}</VenueText>
-                  <VenueText><strong>Capacity:</strong> {venue.capacity}</VenueText>
-                  <VenueText><strong>Status:</strong> {venue.status}</VenueText>
-                  <VenueText>{venue.details}</VenueText>
-                </VenueCardBody>
+                  <VenueOverview>{venue.overview}</VenueOverview>
+                  <CapacityDetails>
+                    <p><strong>Max Capacity:</strong> {venue.maxCapacity}</p>
+                    <p><strong>Dinner:</strong> {venue.capacityDetails.dinner}</p>
+                    <p><strong>Reception:</strong> {venue.capacityDetails.reception}</p>
+                    <p><strong>Theatre:</strong> {venue.capacityDetails.theatre}</p>
+                  </CapacityDetails>
+                </CardBodyOverlay>
               </VenueCard>
             </Col>
           ))}
         </Row>
+
+        <PaginationContainer className="justify-content-center mt-4">
+          {[...Array(totalPages).keys()].map(number => (
+            <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
+              {number + 1}
+            </Pagination.Item>
+          ))}
+        </PaginationContainer>
       </Container>
-    </VenueListWrapper>
+    </DashboardContainer>
   );
 };
 

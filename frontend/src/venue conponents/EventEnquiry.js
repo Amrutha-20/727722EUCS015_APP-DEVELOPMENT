@@ -9,21 +9,21 @@ const themePricing = {
   "Arabian-Egyptian": 70,
   "Beach-Nautical": 60,
   "Casino-Night": 80,
-  "Elegant": 90,
-  "Fiesta": 55,
-  "Fifties": 45,
-  "Halloween": 65,
-  "Christmas": 100,
-  "Hollywood": 120,
-  "International": 75,
-  "Racing": 85,
-  "Space": 95,
+  Elegant: 90,
+  Fiesta: 55,
+  Fifties: 45,
+  Halloween: 65,
+  Christmas: 100,
+  Hollywood: 120,
+  International: 75,
+  Racing: 85,
+  Space: 95,
 };
 
 const EventEnquiry = ({ venueName }) => {
   const navigate = useNavigate();
-  const { userId } = useContext(UserContext);
-
+  const { userId, setVenue } = useContext(UserContext);
+  setVenue(venueName);
   const [form, setForm] = useState({
     eventType: "",
     eventDate: "",

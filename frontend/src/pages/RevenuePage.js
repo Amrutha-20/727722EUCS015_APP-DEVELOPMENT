@@ -1,10 +1,9 @@
-// src/pages/RevenuePage.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const RevenueContainer = styled.div`
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -23,19 +22,6 @@ const Title5 = styled.h1`
   font-size: 2.5rem;
 `;
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  datasets: [
-    {
-      label: 'Revenue',
-      data: [12000, 15000, 10000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000],
-      backgroundColor: 'rgba(75, 192, 192, 0.5)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-    },
-  ],
-};
-
 const options = {
   responsive: true,
   plugins: {
@@ -50,10 +36,46 @@ const options = {
 };
 
 const RevenuePage = () => {
+  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
+
+  useEffect(() => {
+    const fetchRevenueData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/payment/monthly-revenue?year=2024');
+        const data = await response.json();
+
+        const labels = [
+          'January', 'February', 'March', 'April', 'May', 'June', 
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const values = labels.map((_, index) => data[index + 1] || 0);
+
+        setChartData({
+          labels,
+          datasets: [
+            {
+              label: 'Revenue',
+              data: values,
+              fill: false,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              borderWidth: 2,
+              tension: 0.1,  // Makes the line smooth
+            },
+          ],
+        });
+      } catch (error) {
+        console.error('Error fetching revenue data:', error);
+      }
+    };
+
+    fetchRevenueData();
+  }, []);
+
   return (
     <RevenueContainer>
       <Title5>Yearly Revenue</Title5>
-      <Bar data={data} options={options} />
+      <Line data={chartData} options={options} />
     </RevenueContainer>
   );
 };

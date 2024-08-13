@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const SidebarContainer = styled.div`
   width: 250px;
@@ -31,31 +31,38 @@ const SidebarLink = styled(NavLink)`
   }
 `;
 
-const DownloadButton = styled.button`
+const LogoutButton = styled.button`
   margin-top: 20px;
   padding: 10px;
-  background-color: #8b5cf6;
+  background-color: #e53e3e;
   border: none;
   color: #ffffff;
   cursor: pointer;
   &:hover {
-    background-color: #7c3aed;
+    background-color: #c53030;
   }
 `;
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Perform any logout logic here (e.g., clearing user data, tokens, etc.)
+    navigate('/');
+  };
+
   return (
     <SidebarContainer>
       <SidebarTitle>Party Management</SidebarTitle>
       <SidebarLink to="/dashboard" exact>
         Dashboard
       </SidebarLink>
-      <SidebarLink to="/orders">Orders</SidebarLink>
+      <SidebarLink to="/orders">Users</SidebarLink>
       <SidebarLink to="/venuelist">Venues</SidebarLink>
       <SidebarLink to="/revenue">Revenue</SidebarLink>
       <SidebarLink to="/events">Events</SidebarLink>
       
-      <DownloadButton>Download Report</DownloadButton>
+      <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
     </SidebarContainer>
   );
 };

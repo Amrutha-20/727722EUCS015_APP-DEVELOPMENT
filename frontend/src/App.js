@@ -22,8 +22,8 @@ import PartyPlanning from "./service pages/PartyPlanning";
 import EventManagement from "./service pages/EventManagement";
 import Entertainment from "./service pages/Entertainment";
 import Catering from "./service pages/Catering";
-
 import { UserProvider } from "./components/UserProvider";
+
 function App() {
   return (
     <UserProvider>
@@ -42,11 +42,11 @@ function App() {
             <Route
               path="/services/party-planning"
               element={<PartyPlanning />}
-            />
+              />
             <Route
               path="/services/event-management"
               element={<EventManagement />}
-            />
+              />
             <Route path="/services/entertainment" element={<Entertainment />} />
             <Route path="/services/catering" element={<Catering />} />
 

@@ -1,8 +1,7 @@
 import React from 'react'
 import Sidebar from './components/Sidebar';
-import OrderList from './pages/OrderDetails';
-import { OrderProvider } from './pages/OrderContext';
 import styled  from 'styled-components';
+import UserList from './pages/UserList';
 
 
 const ApppContainer = styled.div`
@@ -15,24 +14,14 @@ const MaincContent = styled.div`
 `;
 const Ordercontent = () => {
   return (
-   
-        
-        <OrderProvider>
-    
-    
+      
 <ApppContainer>
     <Sidebar />
     <MaincContent>
-
-    <OrderList/>
+    <UserList />
     </MaincContent>
-   
-  </ApppContainer>
-
-       
-        </OrderProvider>
-   
-  )
+</ApppContainer>  
+ )
 }
 
 export default Ordercontent;
